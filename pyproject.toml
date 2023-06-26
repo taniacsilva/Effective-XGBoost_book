@@ -1,0 +1,24 @@
+[project]
+name = "assignments"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.8"
+description = "Book Exercises - Effective XGBoost"
+authors = [
+    {name = "Tania Silva<tania.mcosta.silva.a@gmail.com"}
+]
+dependencies = ["pandas", "argparse"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pylint", "pytest-cov"]
+
+[tool.setuptools]
+packages = ["survey_data"]
+
+[tool.coverage.run]
+omit = [
+    "*/conftest.py", "*/test*", # omit test files
+]
+
+[tool.coverage.report]
+fail_under = 80
