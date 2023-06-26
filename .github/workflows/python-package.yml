@@ -28,7 +28,6 @@ jobs:
       run: python 
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
-        pip install .
     - name: Lint with flake8
       run: 
         pylint load_model
