@@ -36,6 +36,13 @@ def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
                                                                   .iloc[:,0]
                                                                   .fillna(0)
                                                                   .astype(int)
-                                            
-                                                )
-                                        )
+                                                                  .null(1_000)
+                                                  ),
+                                                  python =  df_.Q16_Part_1.fillna(0).replace('Python', 1),
+                                                  r = df_.Q16_Part_2.fillna(0).replace('R', 1),
+                                                  sql = df_.Q16_Part_3.fillna(0).replace('SQL', 1)
+    ) #assign
+    .rename(columns=lambda col:col.replace(' ', '_'))
+    .loc[:, 'Q1,Q3,age,education,major,years_exp,compensation'
+         'python,r,sql'.split(',')]~
+         )
