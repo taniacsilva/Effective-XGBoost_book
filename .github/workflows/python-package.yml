@@ -31,7 +31,7 @@ jobs:
         pip install .
     - name: Lint with flake8
       run: |
-        pylint load_model
+        pylint load_data
         pylint cleaning
         pylint main
         # stop the build if there are Python syntax errors or undefined names
