@@ -12,6 +12,9 @@ dependencies = ["pandas", "argparse"]
 [project.optional-dependencies]
 dev = ["pytest", "pylint", "pytest-cov"]
 
+[tool.setuptools]
+packages = ["model"]
+
 [tool.coverage.run]
 omit = [
     "*/conftest.py", "*/test*", # omit test files
