@@ -1,7 +1,7 @@
-import pandas as pd
+"""This module loads the data"""
 import urllib.request
 import zipfile
-
+import pandas as pd
 
 
 def extract_zip(src, dst, member_name):
@@ -15,7 +15,6 @@ def extract_zip(src, dst, member_name):
         pandas.DataFrame: DataFrame containing the contents of the member file
     """
     url = src
-    frame = dst
     fin = urllib.request.urlopen(url)
     data = fin.read()
 
@@ -23,7 +22,6 @@ def extract_zip(src, dst, member_name):
         fout.write(data)
     with zipfile.ZipFile(dst) as z:
         kag = pd.read_csv(z.open(member_name))
-        kag_questions = kag.iloc[0]
         raw = kag.iloc[1:]
         return raw
-    
+
