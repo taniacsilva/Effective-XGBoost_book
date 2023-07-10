@@ -24,4 +24,3 @@ def extract_zip(src, dst, member_name):
         kag = pd.read_csv(z.open(member_name))
         raw = kag.iloc[1:]
         return raw
-
