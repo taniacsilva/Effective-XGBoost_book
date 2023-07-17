@@ -12,6 +12,9 @@ def main():
     
     cleaned_data = tweak_kag(df_ = raw)
     print(cleaned_data)    
+    
+    top_n = topn(ser = cleaned_data)
 
+    print(top_n)
 if __name__ == '__main__':
     main()

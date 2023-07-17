@@ -1,3 +1,4 @@
+"""This module cleans the data"""
 import pandas as pd
 
 def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
@@ -12,35 +13,37 @@ def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame : The new data with the modified and selected columns
     """
-    return (df_.assign(age = df_.Q2.str.slice(0, 2).astype(int), 
-                       education = df_.Q4.replace({'Master´s degree': 18,
-                                                  'Bachelor´s Degree': 16,
-                                                  'Some college/university study without earning a bachelor´s degree': 20,
-                                                  'Professional Degree': 19,
-                                                  'I prefer not to answer': None, 
-                                                  'No formal education past high school': 12}), 
-                                                  major = (df_.Q5.pipe(topn, n=3)
-                                                  .replace({'Computer science (software engineering, etc,)': 'cs',
-                                                            'Engineering (non-computer focused)': 'eng', 
-                                                            'Mathematics or statistics': 'stat'})
-                                                  ),
-                                                  years_exp = (df_.Q8.str.replace('+', '', regex = False)
-                                                                .str.split('-', expand=True)
-                                                                .iloc[:,0]
-                                                                .astype(float)), 
-                                                  compensation = (df_.Q9.str.replace('+', '', regex= False)
-                                                                  .str.replace(',', '', regex=False)
-                                                                  .str.replace('500000', '500', regex = False)
-                                                                  .str.replace('I do not wish to disclose my approximate yearly compensation', '0', regex = False)
-                                                                  .str.split('-', expand = True)
-                                                                  .iloc[:,0]
-                                                                  .fillna(0)
-                                                                  .astype(int)
-                                                                  .mul(1_000)
-                                                  ),
-                                                  python =  df_.Q16_Part_1.fillna(0).replace('Python', 1),
-                                                  r = df_.Q16_Part_2.fillna(0).replace('R', 1),
-                                                  sql = df_.Q16_Part_3.fillna(0).replace('SQL', 1)
+    return (df_.assign(age = df_.Q2.str.slice(0, 2).astype(int),
+                       education = df_.Q4.replace(
+        {'Master´s degree': 18,
+         'Bachelor´s Degree': 16,
+         'Some college/university study without earning a bachelor´s degree': 20,
+         'Professional Degree': 19,
+         'I prefer not to answer': None, 
+         'No formal education past high school': 12}), 
+         major = (df_.Q5.pipe(topn, n=3).replace(
+        {'Computer science (software engineering, etc,)': 'cs',
+         'Engineering (non-computer focused)': 'eng',
+         'Mathematics or statistics': 'stat'})
+          ),
+          years_exp = (df_.Q8.str.replace('+', '', regex = False)
+                       .str.split('-', expand=True)
+                       .iloc[:,0]
+                       .astype(float)),
+                       compensation = (df_.Q9.str.replace('+', '', regex= False)
+                                       .str.replace(',', '', regex=False)
+                                       .str.replace('500000', '500', regex = False)
+                                       .str.replace('I do not wish to disclose\
+                                                    my approximate yearly compensation','0', regex = False)
+                                       .str.split('-', expand = True)
+                                       .iloc[:,0]
+                                       .fillna(0)
+                                       .astype(int)
+                                       .mul(1_000)
+                                       ),
+                                       python =  df_.Q16_Part_1.fillna(0).replace('Python', 1),
+                                       r = df_.Q16_Part_2.fillna(0).replace('R', 1),
+                                       sql = df_.Q16_Part_3.fillna(0).replace('SQL', 1)
     ) #assign
     .rename(columns=lambda col:col.replace(' ', '_'))
     .loc[:, 'Q1,Q3,age,education,major,years_exp,compensation,'
