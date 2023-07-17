@@ -34,7 +34,9 @@ def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
                                        .str.replace(',', '', regex=False)
                                        .str.replace('500000', '500', regex = False)
                                        .str.replace('I do not wish to disclose\
-                                                    my approximate yearly compensation','0', regex = False)
+                                                    my approximate yearly compensation',
+                                                    '0',
+                                                    regex = False)
                                        .str.split('-', expand = True)
                                        .iloc[:,0]
                                        .fillna(0)
