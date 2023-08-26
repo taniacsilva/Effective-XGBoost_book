@@ -15,6 +15,6 @@ def main():
     cleaned_data = clean(df_ = raw)
 
     top_n = topn(ser = cleaned_data)
-  
+
 if __name__ == '__main__':
     main()

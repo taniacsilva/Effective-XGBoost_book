@@ -1,6 +1,7 @@
-from sklearn import base, pipeline
-from cleaning import clean
 from feature_engine import encoding, imputation
+from sklearn import base, pipeline
+
+from cleaning import clean
 
 class Transformer(base.BaseEstimator, base.TransformerMixin):
     """ 
@@ -22,9 +23,16 @@ class Transformer(base.BaseEstimator, base.TransformerMixin):
 
     def fit(self, X, y=None):
         return self
-    
+
 
 def get_rawX_y(df, y_col):
+    """ 
+    Obtain the set used for the objective variable and set will all independent variables
+
+    Args:
+        df (pandas DataFrame): DataFrame with the data
+        y_col (str): String that indicates which is the target variable 
+    """
     raw = (df.query('Q3.isin(["United Sates of America", "China", "India"])'
                     'and Q6.isin(["Data Scientist", "Software Engineer"])')
     )
@@ -34,8 +42,11 @@ def get_rawX_y(df, y_col):
 ## Create a pipeline
 kag_pl = pipeline.Pipeline(
     [('clean', Transformer()),
-    ('cat', encoding.OneHotEncodet(top_categories = 5, drop_last = True, variables=['Q1', 'Q3', 'major'])),
-    ('num_inputs', imputation.MeanMedianInputer(imputation_method = 'median', variables = ['education', 'years_exp']))]
+    ('cat', encoding.OneHotEncoder(top_categories = 5,
+                                   drop_last = True,
+                                   variables=['Q1', 'Q3', 'major']
+                                   )),
+    ('num_inputs', imputation.MeanMedianImputer(imputation_method = 'median', variables = ['education', 'years_exp']))]
     )
 
         
