@@ -1,5 +1,4 @@
-from feature_engine import encoding, imputation
-from sklearn import base, pipeline
+from sklearn import base
 
 from cleaning import clean
 
@@ -38,15 +37,5 @@ def get_rawX_y(df, y_col):
     )
 
     return raw.drop(columns=[y_col]), raw[y_col]
-
-## Create a pipeline
-kag_pl = pipeline.Pipeline(
-    [('clean', Transformer()),
-    ('cat', encoding.OneHotEncoder(top_categories = 5,
-                                   drop_last = True,
-                                   variables=['Q1', 'Q3', 'major']
-                                   )),
-    ('num_inputs', imputation.MeanMedianImputer(imputation_method = 'median', variables = ['education', 'years_exp']))]
-    )
 
         
