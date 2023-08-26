@@ -1,7 +1,7 @@
 """This module cleans the data"""
 import pandas as pd
 
-def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
+def clean(df_: pd.DataFrame) -> pd.DataFrame:
     """
     Tweak the Kaggle survey data and return a new DataFrame
     This function takes a pandas DataFrame containing Kaggle survey data as input
@@ -33,8 +33,7 @@ def tweak_kag(df_: pd.DataFrame) -> pd.DataFrame:
                        compensation = (df_.Q9.str.replace('+', '', regex= False)
                                        .str.replace(',', '', regex=False)
                                        .str.replace('500000', '500', regex = False)
-                                       .str.replace('I do not wish to disclose\
-                                                    my approximate yearly compensation',
+                                       .str.replace('I do not wish to disclose my approximate yearly compensation',
                                                     '0',
                                                     regex = False)
                                        .str.split('-', expand = True)
