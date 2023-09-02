@@ -15,7 +15,10 @@ def do_pipeline():
 
     return kag_pl
 
-def split_data (raw, ycol): 
+def split_data (raw, ycol):
+    """
+    This function splits the data into train and test
+    """
     set_X, set_y = get_rawX_y(df=raw, y_col=ycol)
     set_train_X, set_test_X, set_train_y, set_test_y = model_selection.train_test_split(
         set_X,
@@ -28,4 +31,4 @@ def split_data (raw, ycol):
     X_train = kag_pl.fit_transform(set_train_X, set_train_y)
     X_test = kag_pl.transform(set_test_X)
 
-    return X_train, set_test_y
+    return X_train, set_test_y, set_y
