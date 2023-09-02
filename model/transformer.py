@@ -32,10 +32,13 @@ def get_rawX_y(df, y_col):
         df (pandas DataFrame): DataFrame with the data
         y_col (str): String that indicates which is the target variable 
     """
-    raw = (df.query('Q3.isin(["United Sates of America", "China", "India"])'
-                    'and Q6.isin(["Data Scientist", "Software Engineer"])')
-    )
-
+    # Raise error if DataFrame does not contains the columns Q3 and Q6
+    if 'Q3' not in df.columns or 'Q6' not in df.columns:
+        raise ValueError("The DataFrame does not contain the necessary columns (Q3 and Q6).")
+    
+    raw = df[(df['Q3'].isin(["United States of America", "China", "India"])) &
+             (df['Q6'].isin(["Data Scientist", "Software Engineer"]))]
+    
     return raw.drop(columns=[y_col]), raw[y_col]
 
         
