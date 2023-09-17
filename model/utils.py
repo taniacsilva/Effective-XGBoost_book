@@ -2,7 +2,6 @@ from sklearn import model_selection
 from transformer import get_rawX_y, Transformer
 from feature_engine import encoding, imputation
 from sklearn import pipeline
-from sklearn.preprocessing import StandardScaler
 
 def do_pipeline():
     kag_pl = pipeline.Pipeline(

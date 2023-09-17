@@ -1,6 +1,7 @@
 """This is the main module of this exercise"""
 from load_data import extract_zip
 from utils import split_data
+from decision_tree import save_tree_plot
 
 url = 'https://github.com/mattharrison/datasets/raw/master/data/kaggle-survey-2018.zip'
 filename = 'kaggle-survey-2018.zip'
@@ -12,6 +13,9 @@ def main():
     """
     raw = extract_zip(url, filename, member_name)
     X_train, y_train = split_data(raw = raw, ycol = 'Q6')
+    save_tree_plot = save_tree_plot(X_train=X_train, y_train=y_train)
+    save_tree_plot.savefig('plot.png')
+
 
 if __name__ == '__main__':
     main()
