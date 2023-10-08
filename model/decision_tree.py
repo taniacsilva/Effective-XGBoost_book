@@ -12,7 +12,7 @@ def decision_tree_train(X_train: pd.DataFrame, y_train: pd.DataFrame):
     """
     stump_dt = tree.DecisionTreeClassifier(max_depth=1)
     kag_pl = do_pipeline()
-    stump_dt = kag_pl.fit_transform(X_train)
+    X_train = kag_pl.fit_transform(X_train)
     stump_dt.fit(X_train, y_train)
 
     return stump_dt

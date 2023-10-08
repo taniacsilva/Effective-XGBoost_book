@@ -1,7 +1,7 @@
 """This module cleans the data"""
 import pandas as pd
 
-def clean(df_: pd.DataFrame) -> pd.DataFrame:
+def  clean(df_: pd.DataFrame) -> pd.DataFrame:
     """
     Tweak the Kaggle survey data and return a new DataFrame
     This function takes a pandas DataFrame containing Kaggle survey data as input

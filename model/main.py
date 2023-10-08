@@ -13,8 +13,8 @@ def main():
     """
     raw = extract_zip(url, filename, member_name)
     X_train, y_train = split_data(raw = raw, ycol = 'Q6')
-    save_tree_plot = save_tree_plot(X_train=X_train, y_train=y_train)
-    save_tree_plot.savefig('plot.png')
+    tree_plot = save_tree_plot(X_train=X_train, y_train=y_train)
+    print(tree_plot)
 
 
 if __name__ == '__main__':
