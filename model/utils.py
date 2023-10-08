@@ -30,4 +30,4 @@ def split_data (raw, ycol):
     X_train = kag_pl.fit_transform(set_train_X, set_train_y)
     X_test = kag_pl.transform(set_test_X)
 
-    return set_train_X, set_train_y
+    return X_train, set_train_y, X_test, set_test_y
