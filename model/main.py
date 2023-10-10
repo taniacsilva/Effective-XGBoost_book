@@ -2,8 +2,10 @@
 from load_data import extract_zip
 from utils import split_data
 from decision_tree import save_tree_plot, decision_tree_train, evaluation
-from dummy_model import DummyClassifier
 from xgboost_model import XGBoostModel
+from dummy_model import DummyClassifier
+
+
 
 url = 'https://github.com/mattharrison/datasets/raw/master/data/kaggle-survey-2018.zip'
 filename = 'kaggle-survey-2018.zip'
